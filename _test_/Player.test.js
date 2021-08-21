@@ -64,12 +64,13 @@ test('creates a player object', () => {
     expect(player.health).toBe(0);
   });
 
-  Player.prototype.getAttackValue = function() {
-    const min = this.strength - 5;
-    const max = this.strength + 5;
+  test("gets player's attack value", () => {
+    const player = new Player('Dave');
+    player.strength = 10;
   
-    return Math.floor(Math.random() * (max - min) + min);
-  };
+    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+  });
 
   test('adds a potion to the inventory', () => {
     const player = new Player('Dave');
